@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>懒加载测试</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+<style type="text/css">
+	#main{
+		background-color: transparent;
+		border:1px solid #eee;
+		overflow: auto;
+		width: 200px;
+	}
+	#LALA img{
+		width: 200px;
+		height: 200px;
+	}
+</style>
+<body>
+	<div id="main" class="main" >
+		<div id="LALA" >
+			<img  v-simple-lazy="item" v-for="(item,$key) in imageArr">
+
+			<button @click="change()">点击我</button>
+		</div>
+	</div>
+<script src="./vue-simlazy.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script type="text/javascript">
+	Vue.use(LazyLoad,{
+		loadUrl:'image/loading-spin.svg',
+		errorUrl:'image/404.svg'
+	});
+
+	var institution = new Vue({
+		el:'#main',
+		data:{
+			imageArr:[
+			'http://covteam.u.qiniudn.com/test14.jpg?imageView2/2/format/webp',
+			'http://covteam.u.qiniudn.com/test15.jpg?imageView2/2/format/webp',
+			'http://covteam.u.qiniudn.com/test17.jpg?imageView2/2/format/webp',
+			'http://covteam.u.qiniudn.com/test18.jpg?imageView2/2/format/webp',
+			'http://covteam.u.qiniudn.com/test19.jpg?imageView2/2/format/webp',
+			'http://covteam.u.qiniudn.com/test20.jpg?imageView2/2/format/webp',
+			'http://covteam.u.qiniudn.com/test21.jpg?imageView2/2/format/webp',
+			'http://hilongjw.github.io/vue-lazyload/dist/test4.jpg',
+			'http://hilongjw.github.io/vue-lazyload/dist/test5.jpg',
+			'http://hilongjw.github.io/vue-lazyload/dist/test6.jpg',
+			'http://hilongjw.github.io/vue-lazyload/dist/test7.jpg',
+			'http://hilongjw.github.io/vue-lazyload/dist/test8.jpg',
+			'http://hilongjw.github.io/vue-lazyload/dist/test9.jpg',
+			'http://hilongjw.github.io/vue-lazyload/dist/test10.jpg',
+			'http://hilongjw.github.io/vue-lazyload/dist/test14.jpg']
+		},
+		mounted:function(){
+			
+		},
+		methods:{
+			change:function(){
+				for (var i = 7; i < 15; i++) {
+					this.$set(this.imageArr,i,'http://blog.tangyida.top/static/1.jpg');
+				};
+				console.log(this.imageArr);
+				
+			}
+		}
+	})
+</script>
+</body>
+</html>
